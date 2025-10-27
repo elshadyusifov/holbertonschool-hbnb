@@ -1,0 +1,45 @@
+classDiagram
+    %% Presentation Layer
+    class APIService {
+        <<Interface>>
+        +registerUser()
+        +createPlace()
+        +submitReview()
+        +listPlaces()
+    }
+
+    %% Business Logic Layer
+    class UserModel
+    class PlaceModel
+    class ReviewModel
+    class AmenityModel
+    class Facade {
+        +handleUserRegistration()
+        +handlePlaceCreation()
+        +handleReviewSubmission()
+        +handlePlaceListing()
+    }
+
+    %% Persistence Layer
+    class UserRepository
+    class PlaceRepository
+    class ReviewRepository
+    class AmenityRepository
+    class DatabaseConnector
+
+    %% Relationships
+    APIService --> Facade : calls
+    Facade --> UserModel
+    Facade --> PlaceModel
+    Facade --> ReviewModel
+    Facade --> AmenityModel
+
+    UserModel --> UserRepository
+    PlaceModel --> PlaceRepository
+    ReviewModel --> ReviewRepository
+    AmenityModel --> AmenityRepository
+
+    UserRepository --> DatabaseConnector
+    PlaceRepository --> DatabaseConnector
+    ReviewRepository --> DatabaseConnector
+    AmenityRepository --> DatabaseConnector
